@@ -23,17 +23,22 @@ namespace keepr.Repositories
             return keepData;
         }
 
-
+// COUNT(kpt.id) AS Kept,
+//             LEFT JOIN kept kpt ON kpt.keepId = ke.id
+//             GROUP BY kpt.id;
 
         internal Keep FindKeepById(int id)
         {
             string sql = @"
             SELECT 
             ke.*,
+            
             act.*
             FROM keep ke
+            
             JOIN accounts act ON ke.creatorId = act.id
-            WHERE ke.id = @id;
+            WHERE ke.id = @id
+            
             ";
             Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof)=>
             {
@@ -66,7 +71,8 @@ namespace keepr.Repositories
             UPDATE keep
             SET
             name = @name,
-            description = @description
+            description = @description,
+            views = @views
             WHERE id = @id;
             ";
             int rows = _db.Execute(sql, update);

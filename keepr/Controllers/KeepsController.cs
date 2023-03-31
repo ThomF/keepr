@@ -52,7 +52,7 @@ namespace keepr.Controllers
         try 
         {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        Keep keep = _keepsService.FindKeepById(id, userInfo.Id);
+        Keep keep = _keepsService.FindKeepById(id, userInfo?.Id);
         return Ok(keep);
         }
         catch (Exception e)
@@ -63,12 +63,14 @@ namespace keepr.Controllers
 
     [HttpPut("{id}")]
     [Authorize]
-    async public Task<ActionResult<Keep>> updateKeep(int id, [FromBody] Keep updateData)
+    async public Task<ActionResult<Keep>> updateKeep([FromBody] Keep updateData, int id)
     {
         try 
         {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        Keep keep = _keepsService.updateKeep(id, updateData, userInfo);
+        updateData.CreatorId = userInfo.Id;
+        updateData.Id = id;
+        Keep keep = _keepsService.updateKeep(updateData);
         return Ok(keep);
         }
         catch (Exception e)

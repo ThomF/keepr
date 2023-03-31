@@ -21,6 +21,8 @@ namespace keepr.Services
         {
             Keep keep = _repo.FindKeepById(id);
             if(keep == null) throw new Exception("No such Keep Found! How did You get here?");
+            keep.Views++;
+            _repo.UpdateKeep(keep);
             return keep;
         }
 
@@ -30,10 +32,10 @@ namespace keepr.Services
             return keeps;
         }
 
-        internal Keep updateKeep(int id, Keep updateData, Account userInfo)
+        internal Keep updateKeep(Keep updateData)
         {
-            Keep original = this.FindKeepById(id, userInfo.Id);
-            if(original.CreatorId != userInfo.Id) throw new Exception("Stop hacking bro. You cant edit this.");
+            Keep original = this.FindKeepById(updateData.Id, updateData.CreatorId);
+            if(original.CreatorId != updateData.CreatorId) throw new Exception("Stop hacking bro. You cant edit this.");
             original.Name = updateData.Name != null ? updateData.Name : original.Name;
             original.Description = updateData.Description != null ? updateData.Description : original.Description;
             // original.Img = updateData.Img != null ? updateData.Img : original.Img;
