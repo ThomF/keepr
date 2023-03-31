@@ -45,6 +45,21 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
         }
     }
+
+    [HttpGet("{id}")]
+    async public Task<ActionResult<Keep>> FindKeepById(int id)
+    {
+        try 
+        {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        Keep keep = _keepsService.findKeepById(id, userInfo.Id);
+        return Ok(keep);
+        }
+        catch (Exception e)
+        {
+        return BadRequest(e.Message);
+        }
+    }
     
 
 

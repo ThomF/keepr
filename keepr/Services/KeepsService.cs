@@ -16,6 +16,13 @@ namespace keepr.Services
             return keep;
         }
 
+        internal Keep findKeepById(int id, string userInfo)
+        {
+            Keep keep = _repo.findKeepById(id);
+            if(keep == null) throw new Exception("No such Keep Found! How did You get here?");
+            return keep;
+        }
+
         internal List<Keep> getKeeps(string id)
         {
             List<Keep> keeps = _repo.getKeeps();
