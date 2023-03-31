@@ -44,5 +44,24 @@ namespace keepr.Controllers
             return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        async public Task<ActionResult<Vault>> EditVault([FromBody] Vault updateData, int id)
+        {
+            try 
+            {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            updateData.CreatorId = userInfo.Id;
+            updateData.Id = id;
+            Vault vault = _vaultsService.EditVault(updateData);
+            return Ok(vault);
+
+            }
+            catch (Exception e)
+            {
+            return BadRequest(e.Message);
+            }
+        }
     }
 }

@@ -66,7 +66,6 @@ namespace keepr.Repositories
 
         internal int UpdateKeep(Keep update)
         {
-            // FIXME errors out at WHERE id = @id when running all tests.
             string sql = @"
             UPDATE keep
             SET

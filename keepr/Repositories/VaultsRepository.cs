@@ -23,6 +23,8 @@ namespace keepr.Repositories
             return vaultData;
         }
 
+
+
         internal Vault GetVaultById(int id)
         {
         string sql = @"
@@ -39,6 +41,19 @@ namespace keepr.Repositories
             return vault;
         }, new {id}).FirstOrDefault();
         return vault;
+        }
+
+        internal int EditVault(Vault vault)
+        {
+            string sql = @"
+            UPDATE vault
+            SET
+            name = @name, 
+            isPrivate = @isPrivate
+            WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, vault);
+            return rows;
         }
     }
 }
