@@ -60,7 +60,37 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
         }
     }
-    
+
+    [HttpPut("{id}")]
+    [Authorize]
+    async public Task<ActionResult<Keep>> updateKeep(int id, [FromBody] Keep updateData)
+    {
+        try 
+        {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        Keep keep = _keepsService.updateKeep(id, updateData, userInfo);
+        return Ok(keep);
+        }
+        catch (Exception e)
+        {
+        return BadRequest(e.Message);
+        }
+    }
+    [HttpDelete("{id}")]
+    [Authorize]
+    async public Task<ActionResult<string>> DeleteKeep(int id)
+    {
+        try 
+        {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        String message = _keepsService.DeleteKeep(id, userInfo);
+        return Ok(message);
+        }
+        catch (Exception e)
+        {
+        return BadRequest(e.Message);
+        }
+    }
 
 
 

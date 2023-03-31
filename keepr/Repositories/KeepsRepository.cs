@@ -23,6 +23,8 @@ namespace keepr.Repositories
             return keepData;
         }
 
+
+
         internal Keep findKeepById(int id)
         {
             string sql = @"
@@ -56,5 +58,31 @@ namespace keepr.Repositories
             }).ToList();
             return keep;
         }
+
+        internal int UpdateKeep(Keep update)
+        {
+            string sql = @"
+            UPDATE keep
+            SET
+            name = @name,
+            description = @description,
+            img = @img
+            WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, update);
+            return rows;
+        }
+
+
+        internal bool DeleteKeep(int id)
+        {
+            string sql = @"
+            DELETE FROM keep WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new {id});
+            return rows == 1;
+        }
+
+
     }
 }
