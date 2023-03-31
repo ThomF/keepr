@@ -55,5 +55,14 @@ namespace keepr.Repositories
             int rows = _db.Execute(sql, vault);
             return rows;
         }
+
+        internal bool DeleteVault(int id)
+        {
+            string sql = @"
+            DELETE FROM vault WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new {id});
+            return rows == 1;
+        }
     }
 }
