@@ -6,3 +6,17 @@ CREATE TABLE IF NOT EXISTS accounts(
   email varchar(255) COMMENT 'User Email',
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
+ALTER TABLE accounts ADD coverImg varchar(255) COMMENT 'Cover Image';
+
+CREATE TABLE IF NOT EXISTS keep(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  creatorId VARCHAR(255) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  img VARCHAR(255) NOT NULL,
+  views INT NOT NULL,
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+)default charset utf8 COMMENT '';
+ALTER TABLE keep ADD kept INT COMMENT 'Kept or saved ID';
+
