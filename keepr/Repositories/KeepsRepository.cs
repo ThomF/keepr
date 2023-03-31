@@ -25,7 +25,7 @@ namespace keepr.Repositories
 
 
 
-        internal Keep findKeepById(int id)
+        internal Keep FindKeepById(int id)
         {
             string sql = @"
             SELECT 
@@ -61,12 +61,12 @@ namespace keepr.Repositories
 
         internal int UpdateKeep(Keep update)
         {
+            // FIXME errors out at WHERE id = @id when running all tests.
             string sql = @"
             UPDATE keep
             SET
             name = @name,
-            description = @description,
-            img = @img
+            description = @description
             WHERE id = @id;
             ";
             int rows = _db.Execute(sql, update);
