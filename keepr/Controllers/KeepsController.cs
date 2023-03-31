@@ -30,6 +30,21 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
         }
     }
+
+    [HttpGet]
+    async public Task<ActionResult<List<Keep>>>  GetKeeps()
+    {
+        try 
+        {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<Keep> keeps = _keepsService.getKeeps(userInfo?.Id);
+        return Ok(keeps);
+        }
+        catch (Exception e)
+        {
+        return BadRequest(e.Message);
+        }
+    }
     
 
 

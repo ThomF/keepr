@@ -12,9 +12,10 @@ CREATE TABLE IF NOT EXISTS keep(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   creatorId VARCHAR(255) NOT NULL,
   name VARCHAR(100) NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  description VARCHAR(1000) NOT NULL,
   img VARCHAR(255) NOT NULL,
   views INT NOT NULL,
+  kept INT COMMENT 'Kept or saved ID',
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
