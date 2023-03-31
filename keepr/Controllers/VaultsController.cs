@@ -30,5 +30,19 @@ namespace keepr.Controllers
             return BadRequest(e.Message);
             }
         }
+        [HttpGet("{id}")]
+        async public Task<ActionResult<Vault>> GetVaultById(int id)
+        {
+            try 
+            {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            Vault vault = _vaultsService.GetVaultById(id, userInfo?.Id);
+            return vault;
+            }
+            catch (Exception e)
+            {
+            return BadRequest(e.Message);
+            }
+        }
     }
 }
