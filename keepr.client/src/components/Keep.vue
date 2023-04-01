@@ -1,10 +1,10 @@
 <template>
     <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#activeKeep">
-        <div class="elevate">
+        <div class="elevate ">
             <img :src="keep.img" class="img-fluid roundCard" alt="">
-            <div class="d-flex justify-content-between p-2">
+            <div class="d-flex justify-content-between p-2 ">
                 <h2 class="title text-light ">{{ keep.name }}</h2>
-                <img :src="account.picture" class="pfp floatImg " alt="">
+                <img :src="keep.creator.picture" class="pfp floatImg " alt="">
             </div>
         </div>
     </div>
@@ -27,6 +27,7 @@ export default {
     setup(props) {
         return {
             account: computed(() => AppState.account),
+            keepImg: computed(() => `url("${props.keep.img}")`),
             setActiveKeep() {
                 keepsService.setActiveKeep(props.keep)
             }
@@ -59,4 +60,12 @@ export default {
     border-radius: 22px;
     box-shadow: 2px 2px 2px rgba(32, 32, 32, 0.43);
 }
+
+// .keepImg {
+//     background-image: v-bind(keepImg);
+//     background-position: center;
+//     background-size: fit;
+//     height: 20em;
+//     width: 100%;
+// }
 </style>

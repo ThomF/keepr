@@ -40,7 +40,7 @@ export default {
 $gap: .4em;
 
 .masonry {
-  columns: 200px;
+  columns: 300px;
   column-gap: $gap;
 
   &>div {
