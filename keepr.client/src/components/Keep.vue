@@ -1,6 +1,6 @@
 <template>
     <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#activeKeep">
-        <div class="">
+        <div class="elevate">
             <img :src="keep.img" class="img-fluid roundCard" alt="">
             <div class="d-flex justify-content-between p-2">
                 <h2 class="title text-light ">{{ keep.name }}</h2>
@@ -53,6 +53,10 @@ export default {
 
 .roundCard {
     border-radius: 20px;
+}
 
+.elevate {
+    border-radius: 22px;
+    box-shadow: 2px 2px 2px rgba(32, 32, 32, 0.43);
 }
 </style>
