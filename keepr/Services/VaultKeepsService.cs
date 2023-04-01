@@ -14,5 +14,11 @@ namespace keepr.Services
             VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
             return vaultKeep;
         }
+
+        internal VaultKeep GetVaultKeeps(int id, string userInfo)
+        {
+            VaultKeep vaultKeep = _repo.GetVaultKeeps(id);
+            return vaultKeep;
+        }
     }
 }

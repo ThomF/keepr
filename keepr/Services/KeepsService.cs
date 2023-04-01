@@ -52,5 +52,11 @@ namespace keepr.Services
             bool result = _repo.DeleteKeep(id);
             return $"Deleted the keep: {keep.Name}";
         }
+
+        internal List<VaultKeep> GetVaultKeeps(int id)
+        {
+            List<VaultKeep> vaultKeeps = _repo.GetVaultKeeps(id);
+            return vaultKeeps;
+        }
     }
 }

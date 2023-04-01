@@ -88,6 +88,16 @@ namespace keepr.Repositories
             return rows == 1;
         }
 
-
+        internal List<VaultKeep> GetVaultKeeps(int id)
+        {
+            string sql = @"
+            SELECT 
+            k.*
+            FROM vaultKeep k
+            WHERE k.vaultId = @id;
+            ";
+            List<VaultKeep> vaultKeeps = _db.Query<VaultKeep>(sql, new {id}).ToList();
+            return vaultKeeps;
+        }
     }
 }

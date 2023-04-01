@@ -22,5 +22,23 @@ namespace keepr.Repositories
             vaultKeepData.Id = id;
             return vaultKeepData;
         }
+
+        internal VaultKeep GetVaultKeeps(int id)
+        {
+            string sql = @"
+            SELECT 
+            vk.*,
+            act.*
+            FROM vaultKeep vk
+            JOIN accounts act ON vk.creatorId = act.id
+            WHERE vk.id = @id;
+            ";
+            VaultKeep vaultKeep = _db.Query<VaultKeep, Profile, VaultKeep>(sql, (vaultKeep, prof)=>
+            {
+                vaultKeep.Creator = prof;
+                return vaultKeep;
+            }, new {id}).FirstOrDefault();
+            return vaultKeep;
+        }
     }
 }
