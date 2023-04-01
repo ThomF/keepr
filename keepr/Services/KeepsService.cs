@@ -53,7 +53,7 @@ namespace keepr.Services
             return $"Deleted the keep: {keep.Name}";
         }
 
-        internal List<VaultKeepz> GetVaultKeeps(int id)
+        internal List<VaultKeepz> GetVaultKeeps(string id)
         {
             List<VaultKeepz> vaultKeeps = _repo.GetVaultKeeps(id);
             return vaultKeeps;
