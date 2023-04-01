@@ -48,8 +48,8 @@ namespace keepr.Services
         internal string DeleteKeep(int id, Account userInfo)
         {
             Keep keep = this.FindKeepById(id, userInfo.Id);
-            bool result = _repo.DeleteKeep(id);
             if(keep.CreatorId != userInfo.Id) throw new Exception($"You should run, or get Avada Kedavra'd.");
+            bool result = _repo.DeleteKeep(id);
             return $"Deleted the keep: {keep.Name}";
         }
     }

@@ -39,8 +39,8 @@ namespace keepr.Services
         internal string DeleteVault(int id, Account userInfo)
         {
             Vault vault = this.GetVaultById(id, userInfo.Id);
-            bool result = _repo.DeleteVault(id);
             if(vault.CreatorId != userInfo.Id) throw new Exception("Woah there buddy that isnt your vault to delete");
+            bool result = _repo.DeleteVault(id);
             return $"Deleted vault: {vault.Name}";
         }
     }
