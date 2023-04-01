@@ -55,7 +55,7 @@ namespace keepr.Services
 // FIXME auth check breaks delete but is needed for passing no auth
         internal List<VaultKeepz> GetVaultKeeps(string id)
         {
-            // if(id == null) throw new Exception("Woah there bro, you arent on the list...");
+            if(id == null) throw new Exception("Woah there bro, you arent on the list...");
             List<VaultKeepz> vaultKeeps = _repo.GetVaultKeeps(id);
             return vaultKeeps;
         }
