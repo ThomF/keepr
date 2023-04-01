@@ -83,11 +83,11 @@ namespace keepr.Controllers
         }
 
         [HttpGet("{id}/keeps")]
-        public  ActionResult<List<VaultKeep>> GetVaultKeeps(int id)
+        public  ActionResult<List<VaultKeepz>> GetVaultKeeps(int id)
         {
             try 
             {
-            List<VaultKeep> vaultKeep = _keepsService.GetVaultKeeps(id);
+            List<VaultKeepz> vaultKeep = _keepsService.GetVaultKeeps(id);
             return vaultKeep;
             }
             catch (Exception e)

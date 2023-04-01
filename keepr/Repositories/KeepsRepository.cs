@@ -88,15 +88,21 @@ namespace keepr.Repositories
             return rows == 1;
         }
 
-        internal List<VaultKeep> GetVaultKeeps(int id)
+        internal List<VaultKeepz> GetVaultKeeps(int id)
         {
             string sql = @"
             SELECT 
-            k.*
+            k.*,
+            act.*
             FROM vaultKeep k
+            JOIN accounts act ON k.creatorId = act.id
             WHERE k.vaultId = @id;
             ";
-            List<VaultKeep> vaultKeeps = _db.Query<VaultKeep>(sql, new {id}).ToList();
+            List<VaultKeepz> vaultKeeps = _db.Query<VaultKeepz, Profile, VaultKeepz>(sql, (k, prof)=>
+            {
+                k.Creator = prof;
+                return k;
+            },new {id}).ToList();
             return vaultKeeps;
         }
     }
