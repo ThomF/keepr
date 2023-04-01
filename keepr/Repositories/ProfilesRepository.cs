@@ -11,13 +11,7 @@ namespace keepr.Repositories
 
         internal object CreateProfile(string id)
         {
-            string sql = @"
-            INSERT INTO accounts
-            (name, picture, email, id)
-            VALUES
-            (@Name, @Picture, @Email, @Id)";
-            _db.Execute(sql, id);
-            return id;
+            throw new NotImplementedException();
         }
 
         internal Account GetProfileById(string id)
