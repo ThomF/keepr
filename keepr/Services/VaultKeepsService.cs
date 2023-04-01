@@ -11,8 +11,19 @@ namespace keepr.Services
 
         internal VaultKeep createVaultKeep(VaultKeep vaultKeepData)
         {
+            // if(vaultKeepData.CreatorId != userInfo.Id ) throw new Exception("Hey You cant vaultkeep that");
             VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
             return vaultKeep;
+        }
+
+        internal string DeleteVaultKeep(int id, Account userInfo)
+        {
+            VaultKeep vaultKeep = _repo.GetVaultKeeps(id);
+            if(vaultKeep == null)throw new Exception($"No such vaultkeep: {id}");
+            if(vaultKeep.CreatorId != userInfo.Id) throw new Exception("woah there man. that doesnt belongto you");
+            _repo.DeleteVaultKeep(id);
+            return $"removed the vaultkeep";
+
         }
 
         internal VaultKeep GetVaultKeeps(int id, string userInfo)
