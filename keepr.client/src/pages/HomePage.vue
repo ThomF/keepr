@@ -1,7 +1,9 @@
 <template>
-  <div v-for="k in keeps">
-    <Keep :keep="k" />
-  </div>
+  <section class="masonry">
+    <div v-for="k in keeps">
+      <Keep :keep="k" />
+    </div>
+  </section>
 
   <Modal id="activeKeep">
     <ActiveKeep />
@@ -35,6 +37,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$gap: .4em;
+
+.masonry {
+  columns: 200px;
+  column-gap: $gap;
+
+  &>div {
+    margin-top: $gap;
+    display: inline-block;
+  }
+}
+
 .home {
   display: grid;
   height: 80vh;
