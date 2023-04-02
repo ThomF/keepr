@@ -24,7 +24,7 @@ namespace keepr.Repositories
             return _db.QueryFirstOrDefault<Account>(sql, new {id});
         }
     internal List<Keep> GetKeepsByCreatorId(string creatorId)
-{
+    {
     string sql = @"
     SELECT k.*, act.*
     FROM keep k
@@ -41,6 +41,29 @@ namespace keepr.Repositories
         new { creatorId }
     ).ToList();
     return keep;
-}
+    }
+
+    internal List<Vault> GetVaultsByCreatorId(string creatorId)
+    {
+    string sql = @"
+    SELECT k.*, act.*
+    FROM vault k
+    JOIN accounts act ON k.creatorId = act.id
+    WHERE k.creatorId = @creatorId;
+    ";
+    List<Vault> vault = _db.Query<Vault, Account, Vault>(
+        sql,
+        (vault, account) =>
+        {
+            vault.Creator = account;
+            return vault;
+        },
+        new { creatorId }
+    ).ToList();
+    return vault;
+    }
+
+
+
     }
 }
