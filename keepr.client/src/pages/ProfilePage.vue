@@ -15,6 +15,8 @@
             <section class="text-center elvt">
               <img class="pfp" :src="profile.picture" alt="">
               <h3>{{ profile.name }}</h3>
+
+              <h4>Keeps 0 | Vaults 0</h4>
             </section>
           </div>
         </div>
@@ -68,6 +70,7 @@ export default {
   border-radius: 50%;
   height: 140px;
   border: 4px solid rgb(233, 232, 232);
+  box-shadow: 2px 4px 2px rgb(178, 178, 178);
 }
 
 .elvt {
