@@ -28,6 +28,21 @@ namespace keepr.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{id}/keeps")]
+    public async Task<ActionResult<List<Keep>>> GetProfileKeeps(string id)
+    {
+    try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<Keep> keeps = _profilesService.GetProfileKeeps(id);
+            return Ok(keeps);
+        }
+            catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
     }
 }
