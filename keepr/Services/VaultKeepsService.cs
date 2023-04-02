@@ -13,6 +13,7 @@ namespace keepr.Services
         {
             // if(vaultKeepData.CreatorId != userInfo.Id ) throw new Exception("Hey You cant vaultkeep that");
             VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
+            // if(vaultKeepData.Id != VaultKeep.creatorId) throw new Exception("Cant Authorize you!");
             return vaultKeep;
         }
 
@@ -20,7 +21,7 @@ namespace keepr.Services
         {
             VaultKeep vaultKeep = _repo.GetVaultKeeps(id);
             if(vaultKeep == null)throw new Exception($"No such vaultkeep: {id}");
-            if(vaultKeep.CreatorId != userInfo.Id) throw new Exception("woah there man. that doesnt belongto you");
+            if(vaultKeep.CreatorId != userInfo.Id) throw new Exception("woah there man. that doesnt belong to you");
             _repo.DeleteVaultKeep(id);
             return $"removed the vaultkeep";
 

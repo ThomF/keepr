@@ -19,7 +19,7 @@ namespace keepr.Services
         internal Vault GetVaultById(int id, string userInfo)
         {
             Vault vault = _repo.GetVaultById(id);
-            if(vault.CreatorId != userInfo && vault.IsPrivate == true)throw new Exception("That vaults private bro");
+            if(vault.IsPrivate == true)throw new Exception("That vaults private bro");
             if(vault == null) throw new Exception("No such vault");
             return vault;
         }
