@@ -10,9 +10,9 @@ namespace keepr.Services
             _repo = repo;
         }
 
-        internal object GetProfileById(int id, string userInfo)
+        internal object GetProfileById(string userInfo)
         {
-            Account profile = _repo.GetProfileById(userInfo);
+            Profile profile = _repo.GetProfileById(userInfo);
             if(profile == null) throw new Exception("woah woah woah, no such profile...");
             return profile;
         }

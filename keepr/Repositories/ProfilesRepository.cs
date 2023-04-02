@@ -14,14 +14,14 @@ namespace keepr.Repositories
             throw new NotImplementedException();
         }
 
-        internal Account GetProfileById(string id)
+        internal Profile GetProfileById(string id)
         {
             string sql = @"
             SELECT 
             *
             FROM accounts WHERE id = @id;
             ";
-            return _db.QueryFirstOrDefault<Account>(sql, new { id });
+            return _db.QueryFirstOrDefault<Profile>(sql, new { id });
         }
     }
 }
