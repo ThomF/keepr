@@ -7,7 +7,11 @@
 body{
   overscroll-behavior: none;
 }
-
+@font-face {
+  font-family: 'Quando', serif;
+  ;
+  src: url('https://fonts.googleapis.com/css2?family=Quando&display=swap');
+}
 #app {
   display: flex;
   flex-direction: column;

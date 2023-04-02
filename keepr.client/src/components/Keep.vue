@@ -3,7 +3,7 @@
         <div class="elevate ">
             <img :src="keep.img" class="img-fluid roundCard" alt="">
             <div class="d-flex justify-content-between p-2 ">
-                <h2 class="title text-light ">{{ keep.name }}</h2>
+                <h2 class="title text-light qfont ">{{ keep.name }}</h2>
                 <img :src="keep.creator.picture" class="pfp floatImg " alt="">
             </div>
         </div>
@@ -41,6 +41,10 @@ export default {
 .pfp {
     border-radius: 50%;
     height: 50px;
+}
+
+.qfont {
+    font-family: Quando;
 }
 
 .floatImg {
