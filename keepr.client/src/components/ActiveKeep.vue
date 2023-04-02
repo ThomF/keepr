@@ -35,7 +35,7 @@
                         </div>
                         <div>
 
-                            <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
+                            <!-- <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
                                 <button @click.stop type="submit"
                                     class="btn btn-outline-dark rounded-left d-flex flex-wrap m-auto">
                                     Add To Vault
@@ -46,7 +46,7 @@
                                         {{ vault.name }}</option>
                                 </select>
 
-                            </form>
+                            </form> -->
                         </div>
                     </div>
                     <div class="row m-5 floatme">
@@ -55,7 +55,9 @@
                                 <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
                                         class="mdi mdi-cancel"></i>Remove</button>
                             </div>
-                            <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
+                            <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
+                                <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
+                            </router-link>
                         </div>
                     </div>
                 </div>
