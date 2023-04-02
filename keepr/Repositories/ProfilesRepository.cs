@@ -21,7 +21,7 @@ namespace keepr.Repositories
             *
             FROM accounts WHERE id = @id;
             ";
-            return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+            return _db.QueryFirstOrDefault<Account>(sql, new {id});
         }
     }
 }
