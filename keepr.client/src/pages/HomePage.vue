@@ -10,6 +10,12 @@
   <Modal id="activeKeep">
     <ActiveKeep />
   </Modal>
+  <Modal id="keepForm">
+    <KeepForm />
+  </Modal>
+  <Modal id="vaultForm">
+    <VaultForm />
+  </Modal>
 </template>
 
 <script>

@@ -25,8 +25,10 @@
               CREATE <i class="mdi mdi-menu-down"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a title="Create Keep" class="dropdown-item">Keep <i class="mdi mdi-human"></i></a>
-              <a title="Create Vault" class="dropdown-item">Vault <i class="mdi mdi-safe-square"></i></a>
+              <a title="Create Keep" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#keepForm">Keep <i
+                  class="mdi mdi-human ms-3"></i></a>
+              <a title="Create Vault" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#vaultForm">Vault <i
+                  class="mdi mdi-safe-square ms-3"></i></a>
             </div>
           </div>
         </li>
