@@ -49,7 +49,6 @@ export default {
     }
     onMounted(() => {
       getKeeps()
-      // getVaults()
     })
     return {
       keeps: computed(() => AppState.keeps)

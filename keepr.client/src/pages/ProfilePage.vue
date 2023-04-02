@@ -25,6 +25,18 @@
       <div class="row">
         <div class="col-12">
           <div>
+            <h1><b>Vaults</b></h1>
+          </div>
+          <section class="masonry">
+            <div v-for="v in vault">
+              <Vault :vault="v" />
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div>
             <h1><b>Keeps</b></h1>
           </div>
           <section class="masonry">
@@ -45,6 +57,7 @@ import { profilesService } from '../services/ProfilesService';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService';
+import { vaultsService } from '../services/VaultsService';
 
 
 export default {
@@ -68,19 +81,29 @@ export default {
         Pop.error(error.message)
       }
     }
+    async function getUserVaults() {
+      try {
+        const user = route.params.creatorId
+        await vaultsService.getUserVaults(user)
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
 
 
 
     onMounted(() => {
       getUser()
       getUserKeeps()
+      getUserVaults()
     })
     onUnmounted(() => {
       AppState.profile = []
     })
     return {
       profile: computed(() => AppState.profile),
-      keep: computed(() => AppState.keeps)
+      keep: computed(() => AppState.keeps),
+      vault: computed(() => AppState.vaults)
     }
   }
 }
