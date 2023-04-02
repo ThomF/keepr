@@ -42,6 +42,30 @@ namespace keepr.Repositories
         }, new {id}).FirstOrDefault();
         return vault;
         }
+internal Vault[] GetMyVaults(string userInfo)
+{
+    string sql = @"
+        SELECT 
+        v.*,
+        u.*
+        FROM vault v
+        JOIN accounts u ON v.creatorId = u.id
+        WHERE v.creatorId = @userInfo
+    ";
+    
+    var vaults = _db.Query<Vault, Profile, Vault>(
+        sql,
+        (v, u) =>
+        {
+            v.Creator = u;
+            return v;
+        },
+        new { userInfo }
+    ).ToArray();
+    
+    return vaults;
+}
+
 
         internal int EditVault(Vault vault)
         {

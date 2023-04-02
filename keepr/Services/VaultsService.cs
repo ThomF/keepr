@@ -24,7 +24,13 @@ namespace keepr.Services
             return vault;
         }
 
-// NOTE issue with the isPrivate
+        internal Vault[] GetMyVaults(string userInfo)
+        {
+            Vault[] vault = _repo.GetMyVaults(userInfo);
+            return vault;
+        }
+
+// NOTE issue with the isPrivate ??? solved
         internal Vault EditVault(Vault updateData)
         {
             Vault original = this.GetVaultById(updateData.Id, updateData.CreatorId);
