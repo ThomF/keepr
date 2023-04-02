@@ -27,7 +27,6 @@ export default class Pop {
       if (res.isConfirmed) {
         return true
       }
-      return false
     } catch (error) {
       return false
     }

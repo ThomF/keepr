@@ -37,7 +37,7 @@
                     <div class="row m-5 floatme">
                         <div class="d-flex justify-content-between">
                             <div v-if="account.id == keep.creatorId">
-                                <button class="btn text-danger" title="delete this keep"><i
+                                <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
                                         class="mdi mdi-cancel"></i>Remove</button>
                             </div>
                             <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
@@ -54,12 +54,25 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../AppState';
+import { keepsService } from '../services/KeepsService';
+import Pop from '../utils/Pop';
 
 export default {
     setup() {
         return {
             account: computed(() => AppState.account),
             keep: computed(() => AppState.keep),
+
+            async deleteKeep(keepId) {
+                try {
+                    if (await Pop.confirm("exiling this keep will send it off forever! Are you sure?")) {
+                        await keepsService.deleteKeep(keepId)
+
+                    }
+                } catch (error) {
+                    Pop.error(error.message)
+                }
+            }
         }
     }
 }
