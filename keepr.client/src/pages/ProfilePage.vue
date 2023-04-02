@@ -15,10 +15,23 @@
             <section class="text-center elvt">
               <img class="pfp" :src="profile.picture" alt="">
               <h3>{{ profile.name }}</h3>
-
               <h4>Keeps 0 | Vaults 0</h4>
             </section>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <h1><b>Keeps</b></h1>
+          </div>
+          <section class="masonry">
+            <div v-for="k in keep">
+              <Keep :keep="k" />
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -31,6 +44,7 @@ import { useRoute } from 'vue-router';
 import { profilesService } from '../services/ProfilesService';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState.js';
+import { keepsService } from '../services/KeepsService';
 
 
 export default {
@@ -46,20 +60,45 @@ export default {
       }
     }
 
+    async function getUserKeeps() {
+      try {
+        const user = route.params.creatorId
+        await keepsService.getUserKeeps(user)
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
+
+
     onMounted(() => {
       getUser()
+      getUserKeeps()
     })
     onUnmounted(() => {
       AppState.profile = []
     })
     return {
-      profile: computed(() => AppState.profile)
+      profile: computed(() => AppState.profile),
+      keep: computed(() => AppState.keeps)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+$gap: 1em;
+
+.masonry {
+  columns: 300px;
+  column-gap: $gap;
+
+  &>div {
+    margin-top: $gap;
+    display: inline-block;
+  }
+}
+
 .banner {
   height: 300px;
   // width: 1000px;

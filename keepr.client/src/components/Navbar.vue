@@ -22,7 +22,7 @@
           <div class="dropdown">
             <button class="btn text-dark lighten-30 selectable text-uppercase" type="button" id="dropdownMenuButton"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              CREATE <i class="mdi mdi-menu-down"></i>
+              <b>CREATE</b><i class="mdi mdi-menu-down"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a title="Create Keep" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#keepForm">Keep <i
