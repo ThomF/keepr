@@ -33,6 +33,21 @@
                         <div class="col-8">
                             <b>{{ keep.description }}</b>
                         </div>
+                        <div>
+
+                            <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
+                                <button @click.stop type="submit"
+                                    class="btn btn-outline-dark rounded-left d-flex flex-wrap m-auto">
+                                    Add To Vault
+                                </button>
+                                <select placeholder="select a deck" @click.stop v-model="editable.value"
+                                    class="form-select rounded-right w-75 m-auto " aria-label="Default select example">
+                                    <option v-for="v in vault" :value="vault.id" selected>
+                                        {{ vault.name }}</option>
+                                </select>
+
+                            </form>
+                        </div>
                     </div>
                     <div class="row m-5 floatme">
                         <div class="d-flex justify-content-between">
@@ -52,14 +67,21 @@
 
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import { keepsService } from '../services/KeepsService';
 import Pop from '../utils/Pop';
 
 export default {
+    props: {
+        vault: {
+            type: Array, required: true
+        }
+    },
     setup() {
+        const editable = ref({})
         return {
+            editable,
             account: computed(() => AppState.account),
             keep: computed(() => AppState.keep),
 

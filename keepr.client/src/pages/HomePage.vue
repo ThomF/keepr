@@ -22,10 +22,16 @@
 import { onMounted, computed } from 'vue'
 import { AppState } from '../AppState'
 import { keepsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 
 export default {
+  props: {
+    vault: {
+      type: Array, required: true
+    }
+  },
   setup() {
     async function getKeeps() {
       try {
@@ -34,8 +40,16 @@ export default {
         Pop.error(error.message)
       }
     }
+    async function getVaults() {
+      try {
+        await vaultsService.getVaults()
+      } catch (error) {
+        Pop.error(message.error)
+      }
+    }
     onMounted(() => {
       getKeeps()
+      // getVaults()
     })
     return {
       keeps: computed(() => AppState.keeps)
