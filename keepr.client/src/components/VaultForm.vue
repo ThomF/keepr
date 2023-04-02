@@ -45,6 +45,7 @@ export default {
             async createVault() {
                 try {
                     await vaultsService.createVault(editable.value)
+                    Pop.success(`Created the ${editable.value.name} Vault`)
                     editable.value = {}
                 } catch (error) {
                     Pop.error(error.message)

@@ -38,6 +38,7 @@ export default {
                 try {
                     // logger.log("[new keep data]", editable.value)
                     await keepsService.createKeep(editable.value)
+                    Pop.success(`Created the ${editable.value.name} keep`)
                     editable.value = {}
                 } catch (error) {
                     Pop.error(error.message)
