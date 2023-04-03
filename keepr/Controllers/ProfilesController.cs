@@ -49,7 +49,7 @@ namespace keepr.Controllers
     try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            List<Vault> vaults = _profilesService.GetProfileVaults(id);
+            List<Vault> vaults = _profilesService.GetProfileVaults(id, userInfo?.Id);
             return Ok(vaults);
         }
             catch (Exception e)

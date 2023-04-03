@@ -25,10 +25,12 @@ namespace keepr.Services
     return keeps;
     }
 
-    internal List<Vault> GetProfileVaults(string creatorId)
+    internal List<Vault> GetProfileVaults(string id, string userInfo)
     {
-    List<Vault> vaults = _repo.GetVaultsByCreatorId(creatorId);
+    List<Vault> vaults = _repo.GetVaultsByCreatorId(id);
     if(vaults == null || vaults.Count == 0) throw new Exception("No vaults here!");
+    // if(userInfo != vaults) throw new Exception("No Vaults here");
+    vaults = vaults.Where(v => !v.IsPrivate).ToList();
     return vaults;
     }
 
