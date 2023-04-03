@@ -8,6 +8,17 @@
             </div>
         </section>
     </div>
+
+
+    <Modal id="activeKeep">
+        <ActiveKeep />
+    </Modal>
+    <Modal id="keepForm">
+        <KeepForm />
+    </Modal>
+    <Modal id="vaultForm">
+        <VaultForm />
+    </Modal>
 </template>
 
 
@@ -45,7 +56,7 @@ export default {
             getVault()
         })
         onUnmounted(() => {
-            AppState.vault = []
+            AppState.vault = {}
         })
         return {
             vault: computed(() => AppState.vault),

@@ -21,8 +21,10 @@ namespace keepr.Services
         {
             Keep keep = _repo.FindKeepById(id);
             if(keep == null) throw new Exception("No such Keep Found! How did You get here?");
-            keep.Views++;
-            _repo.UpdateKeep(keep);
+            if(keep.CreatorId != userInfo){
+                keep.Views++;
+                _repo.UpdateKeep(keep);
+            }
             return keep;
         }
 

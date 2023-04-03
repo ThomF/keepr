@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12">
           <div>
             <h1><b>Vaults</b></h1>
@@ -34,7 +34,7 @@
           </section>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-12">
           <div>
             <h1><b>Keeps</b></h1>

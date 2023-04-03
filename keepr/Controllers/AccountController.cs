@@ -29,6 +29,22 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+  [HttpPost]
+  [Authorize]
+  async public Task<ActionResult<Account>> editAccount([FromBody] Account accountData)
+  {
+    try 
+    {
+        Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+        Account act = _accountService.Edit(accountData, userInfo.Email);
+        // act.Email = userInfo.Email;
+        return Ok(act);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 
   
   [HttpGet("vaults")]
