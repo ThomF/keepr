@@ -98,7 +98,7 @@ namespace keepr.Repositories
             FROM vaultKeep vk
             JOIN keep kp ON vk.keepId = kp.id
             JOIN accounts act ON kp.creatorId = act.id
-            WHERE vk.creatorId = @id;
+            WHERE vk.vaultId = @id;
             ";
             List<VaultKeepz> vaultKeeps = _db.Query<VaultKeepz, VaultKeep, Profile, VaultKeepz>(sql, (vaultKeepz, vaultKeep, profile)=>
             {
