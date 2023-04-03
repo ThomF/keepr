@@ -26,6 +26,7 @@
           <div>
             <h1><b>Vaults</b></h1>
           </div>
+          <!-- v-if="vault.isPrivate" -->
           <section class="masonry">
             <div v-for="v in vault">
               <Vault :vault="v" />

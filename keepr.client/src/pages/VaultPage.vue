@@ -8,7 +8,12 @@
         </div>
         <section class="masonry">
             <div v-for="v in keep">
-                <Vault :vault="v" />
+                <div v-if="account.id == vault.creatorId">
+                    <button @click="deleteVaultKeep(v.vaultKeepId)" class="btn btn-outline text-danger">
+                        <i class="mdi mdi-delete"></i>
+                    </button>
+                </div>
+                <Keep :keep="v" />
             </div>
         </section>
     </div>
@@ -74,13 +79,24 @@ export default {
                     if (await Pop.confirm("exiling this Vault will send it off forever! Are you sure?")) {
                         await vaultsService.deleteVault(vaultId)
                         Pop.success(`The ${this.vault.name} was deleted`)
-                        router.push('')
+                        // NOTE look into pushing after delete
+                        // router.push('account')
                     }
                 } catch (error) {
                     Pop.error(error.message)
                 }
             },
+            async deleteVaultKeep(vkId) {
+                try {
+                    logger.log(vkId)
 
+                    if (await Pop.confirm('This cant be undone! Are you sure?')) {
+                        await vaultsService.deleteVaultKeep(vkId)
+                    }
+                } catch (error) {
+                    Pop.error('problem deleting this vault keep', error.message)
+                }
+            }
         }
     }
 }

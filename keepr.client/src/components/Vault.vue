@@ -5,6 +5,9 @@
                 <img :src="vault.img" class="img-fluid roundCard" alt="">
                 <div class="d-flex justify-content-between p-2 ">
                     <h2 class="title text-light qfont ">{{ vault.name }}</h2>
+                    <div v-if="vault.isPrivate">
+                        <a class="mdi mdi-lock"></a>
+                    </div>
                 </div>
             </router-link>
         </div>
