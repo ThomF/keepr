@@ -15,8 +15,11 @@ class KeepsService {
         AppState.keeps = res.data.map(k => new Keep(k))
     }
 
-    setActiveKeep(keep) {
+    async setActiveKeep(keep, keepId) {
         AppState.keep = keep
+        const res = await api.get(`api/keeps/${keepId}`)
+        logger.log('[Getting the active keep]', res.data)
+
     }
 
 
@@ -34,6 +37,7 @@ class KeepsService {
             AppState.keeps.splice(i, 1)
         }
     }
+
 
 
 

@@ -80,8 +80,11 @@ export default {
             type: Array, required: true
         }
     },
+
     setup() {
         const editable = ref({})
+
+
         return {
             editable,
             account: computed(() => AppState.account),
@@ -97,6 +100,8 @@ export default {
                     Pop.error(error.message)
                 }
             }
+
+
         }
     }
 }

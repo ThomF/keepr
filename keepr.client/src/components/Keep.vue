@@ -28,8 +28,8 @@ export default {
         return {
             account: computed(() => AppState.account),
             keepImg: computed(() => `url("${props.keep.img}")`),
-            setActiveKeep() {
-                keepsService.setActiveKeep(props.keep)
+            async setActiveKeep() {
+                await keepsService.setActiveKeep(props.keep, props.keep.id)
             }
         }
     }

@@ -4,9 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div class="card elevation-5 banner mt-4">
-            <img class="banner"
-              src="https://images.unsplash.com/photo-1680199693427-4a31f8ffc531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-              alt="">
+            <img class="banner" :src="profile.coverImg" alt="">
           </div>
         </div>
         <div class="row">
@@ -15,6 +13,7 @@
             <section class="text-center elvt">
               <img class="pfp" :src="profile.picture" alt="">
               <h3>{{ profile.name }}</h3>
+              <!-- NOTE add the keeps to appstate on load??? -->
               <h4>Keeps 0 | Vaults 0</h4>
             </section>
           </div>
