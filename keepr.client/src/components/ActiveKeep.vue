@@ -35,29 +35,34 @@
                         </div>
                         <div>
 
-                            <!-- <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
+                            <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
                                 <button @click.stop type="submit"
                                     class="btn btn-outline-dark rounded-left d-flex flex-wrap m-auto">
                                     Add To Vault
                                 </button>
                                 <select placeholder="select a deck" @click.stop v-model="editable.value"
                                     class="form-select rounded-right w-75 m-auto " aria-label="Default select example">
-                                    <option v-for="v in vault" :value="vault.id" selected>
+                                    <option v-for="vault in vault" :value="vault.id" selected>
                                         {{ vault.name }}</option>
                                 </select>
 
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                     <div class="row m-5 floatme">
                         <div class="d-flex justify-content-between">
-                            <div v-if="account.id == keep.creatorId">
-                                <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
-                                        class="mdi mdi-cancel"></i>Remove</button>
+                            <div class="col-4">
+                                <div v-if="account.id == keep.creatorId">
+                                    <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
+                                            class="mdi mdi-cancel"></i>Remove</button>
+                                </div>
                             </div>
-                            <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
-                                <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
-                            </router-link>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
+                                    <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
+                                </router-link>
+                            </div>
                         </div>
                     </div>
                 </div>

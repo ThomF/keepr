@@ -17,12 +17,18 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import { Keep } from '../models/Keep.js';
 import { AppState } from '../AppState';
+import { Account } from '../models/Account';
+import { profilesService } from '../services/ProfilesService';
+import { accountService } from '../services/AccountService';
 
 export default {
     props: {
         keep: {
             type: Keep, required: true
-        }
+        },
+        // account: {
+        //     type: Account, required: true
+        // },
     },
     setup(props) {
         return {
@@ -30,6 +36,10 @@ export default {
             keepImg: computed(() => `url("${props.keep.img}")`),
             async setActiveKeep() {
                 await keepsService.setActiveKeep(props.keep, props.keep.id)
+                await accountService.getMyVaults()
+            },
+            async getMyVaults() {
+                await accountService.getMyVaults()
             }
         }
     }
