@@ -1,10 +1,12 @@
 <template>
     <div>
         <div class="elevate ">
-            <img :src="vault.img" class="img-fluid roundCard" alt="">
-            <div class="d-flex justify-content-between p-2 ">
-                <h2 class="title text-light qfont ">{{ vault.name }}</h2>
-            </div>
+            <router-link :to="{ name: 'Vault', params: { vaultId: vault.id } }">
+                <img :src="vault.img" class="img-fluid roundCard" alt="">
+                <div class="d-flex justify-content-between p-2 ">
+                    <h2 class="title text-light qfont ">{{ vault.name }}</h2>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
