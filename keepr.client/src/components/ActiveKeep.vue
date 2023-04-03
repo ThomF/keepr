@@ -53,8 +53,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <div v-for="v in vaults">
-                                            <a @click="addToVault(keep.id, v.id)" :vault="v" :value="v.id"
-                                                class="dropdown-item">{{ v.name }}</a>
+                                            <a @click="addToVault(keep.id, v.id)" :vault="v" class="dropdown-item">{{ v.name
+                                            }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -80,6 +80,7 @@ import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import { Vault } from '../models/Vault';
 import { keepsService } from '../services/KeepsService';
+import { vaultsService } from '../services/VaultsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 
@@ -111,8 +112,15 @@ export default {
                 }
             },
 
-            addToVault(keepId, vaultId) {
+            async addToVault(keepId, vaultId) {
                 logger.log('[KeepId]', keepId, '[VaultId]', vaultId)
+                try {
+                    const body = { keepId: keepId, vaultId: vaultId }
+                    await vaultsService.createVaultKeep(body)
+                } catch (error) {
+                    Pop.error('error adding keep to vault')
+                    logger.log(error)
+                }
             }
 
 
