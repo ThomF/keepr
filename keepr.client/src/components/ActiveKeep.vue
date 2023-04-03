@@ -53,14 +53,16 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <div v-for="v in vaults">
-                                            <a :vault="v" :value="v.id" class="dropdown-item">{{ v.name }}</a>
+                                            <a @click="addToVault(keep.id, v.id)" :vault="v" :value="v.id"
+                                                class="dropdown-item">{{ v.name }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
-                                    <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
+                                    <img :src="keep.creator.picture" data-bs-dismiss="modal" :title="keep.creatorId.name"
+                                        class="pfp" alt="">
                                 </router-link>
                             </div>
                         </div>
@@ -78,6 +80,7 @@ import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import { Vault } from '../models/Vault';
 import { keepsService } from '../services/KeepsService';
+import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 
 export default {
@@ -106,6 +109,10 @@ export default {
                 } catch (error) {
                     Pop.error(error.message)
                 }
+            },
+
+            addToVault(keepId, vaultId) {
+                logger.log('[KeepId]', keepId, '[VaultId]', vaultId)
             }
 
 
