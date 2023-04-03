@@ -9,15 +9,18 @@ class AccountService {
     try {
       const res = await api.get('/account')
       AppState.account = new Account(res.data)
+      const v = await api.get('account/vaults')
+      logger.log('[Getting my Account Vaults]', v.data)
+      AppState.vaults = v.data.map(v => new Vault(v))
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
 
   async getMyVaults() {
-    const res = await api.get('account/vaults')
-    logger.log('[Getting my Account Vaults]', res.data)
-    AppState.vaults = res.data.map(v => new Vault(v))
+    // const res = await api.get('account/vaults')
+    // logger.log('[Getting my Account Vaults]', res.data)
+    // AppState.vaults = res.data.map(v => new Vault(v))
   }
 
   async editAccount(edit) {

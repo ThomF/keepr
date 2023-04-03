@@ -33,31 +33,31 @@
                         <div class="col-8">
                             <b>{{ keep.description }}</b>
                         </div>
-                        <div>
 
-                            <form v-if="account.id" @submit.prevent="addToVault(editable.value, keep.id)" class="d-flex">
-                                <button @click.stop type="submit"
-                                    class="btn btn-outline-dark rounded-left d-flex flex-wrap m-auto">
-                                    Add To Vault
-                                </button>
-                                <select placeholder="select a deck" @click.stop v-model="editable.value"
-                                    class="form-select rounded-right w-75 m-auto " aria-label="Default select example">
-                                    <option v-for="vault in vault" :value="vault.id" selected>
-                                        {{ vault.name }}</option>
-                                </select>
-
-                            </form>
-                        </div>
                     </div>
                     <div class="row m-5 floatme">
                         <div class="d-flex justify-content-between">
-                            <div class="col-4">
+                            <div class="col-2">
                                 <div v-if="account.id == keep.creatorId">
                                     <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
                                             class="mdi mdi-cancel"></i>Remove</button>
                                 </div>
                             </div>
-                            <div class="col-4"></div>
+                            <div class="col-6">
+
+                                <div class="dropdown">
+                                    <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <b>Select A Vault</b><i class="mdi mdi-menu-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div v-for="v in vaults">
+                                            <a :vault="v" :value="v.id" class="dropdown-item">{{ v.name }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-4">
                                 <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
                                     <img :src="keep.creator.picture" :title="keep.creatorId.name" class="pfp" alt="">
@@ -76,13 +76,14 @@
 <script>
 import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
+import { Vault } from '../models/Vault';
 import { keepsService } from '../services/KeepsService';
 import Pop from '../utils/Pop';
 
 export default {
     props: {
-        vault: {
-            type: Array, required: true
+        vaultz: {
+            type: Vault, required: true
         }
     },
 
@@ -94,6 +95,7 @@ export default {
             editable,
             account: computed(() => AppState.account),
             keep: computed(() => AppState.keep),
+            vaults: computed(() => AppState.vaults),
 
             async deleteKeep(keepId) {
                 try {

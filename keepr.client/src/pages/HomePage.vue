@@ -21,6 +21,7 @@
 <script>
 import { onMounted, computed } from 'vue'
 import { AppState } from '../AppState'
+import { accountService } from '../services/AccountService'
 import { keepsService } from '../services/KeepsService'
 import { vaultsService } from '../services/VaultsService'
 import { logger } from '../utils/Logger'
@@ -28,7 +29,7 @@ import Pop from '../utils/Pop'
 
 export default {
   props: {
-    vault: {
+    vaults: {
       type: Array, required: true
     }
   },
@@ -47,8 +48,16 @@ export default {
         Pop.error(message.error)
       }
     }
+    async function getActVaults() {
+      try {
+        await accountService.getMyVaults()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
     onMounted(() => {
       getKeeps()
+      // getActVaults()
     })
     return {
       keeps: computed(() => AppState.keeps)
