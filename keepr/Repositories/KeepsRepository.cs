@@ -88,8 +88,9 @@ namespace keepr.Repositories
             return rows == 1;
         }
 
-        internal List<VaultKeepz> GetVaultKeeps(string id)
+        internal List<VaultKeepz> GetVaultKeeps(int id, string uId)
         {
+            
             string sql = @"
             SELECT 
             kp.*,
@@ -102,11 +103,10 @@ namespace keepr.Repositories
             ";
             List<VaultKeepz> vaultKeeps = _db.Query<VaultKeepz, VaultKeep, Profile, VaultKeepz>(sql, (vaultKeepz, vaultKeep, profile)=>
             {
-                if (vaultKeepz != null && vaultKeep != null && profile != null)
-            {
+
                 vaultKeepz.VaultKeepId = vaultKeep.Id;
                 vaultKeepz.Creator = profile;
-            }
+            
                 return vaultKeepz;
             },new {id}).ToList();
             return vaultKeeps;

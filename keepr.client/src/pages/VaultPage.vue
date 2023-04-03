@@ -32,6 +32,7 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 import { router } from '../router';
 import { vaultsService } from '../services/VaultsService';
+import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 
 export default {
@@ -50,6 +51,7 @@ export default {
         async function getVault() {
             try {
                 const id = route.params.vaultId
+                // logger.log("this is the vault id to get vk", id)
                 await vaultsService.getVault(id)
             } catch (error) {
                 Pop.error(error.message)
@@ -65,7 +67,7 @@ export default {
         })
         return {
             vault: computed(() => AppState.vault),
-            keep: computed(() => AppState.keeps),
+            keep: computed(() => AppState.vaultKeeps),
             account: computed(() => AppState.account),
             async deleteVault(vaultId) {
                 try {

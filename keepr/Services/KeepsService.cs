@@ -55,10 +55,10 @@ namespace keepr.Services
             return $"Deleted the keep: {keep.Name}";
         }
 // FIXME auth check breaks delete but is needed for passing no auth
-        internal List<VaultKeepz> GetVaultKeeps(string id)
+        internal List<VaultKeepz> GetVaultKeeps(int id, string uId)
         {
             // if(id == null) throw new Exception("Woah there bro, you arent on the list...");
-            List<VaultKeepz> vaultKeeps = _repo.GetVaultKeeps(id);
+            List<VaultKeepz> vaultKeeps = _repo.GetVaultKeeps(id, uId);
             return vaultKeeps;
         }
     }

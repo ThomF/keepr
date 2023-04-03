@@ -83,12 +83,12 @@ namespace keepr.Controllers
         }
 
         [HttpGet("{id}/keeps")]
-        public async  Task<ActionResult<List<VaultKeepz>>> GetVaultKeeps()
+        public async  Task<ActionResult<List<VaultKeepz>>> GetVaultKeeps(int id)
         {
             try 
             {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            List<VaultKeepz> vaultKeep = _keepsService.GetVaultKeeps(userInfo?.Id);
+            List<VaultKeepz> vaultKeep = _keepsService.GetVaultKeeps(id, userInfo?.Id);
             return Ok(vaultKeep);
             }
             catch (Exception e)
