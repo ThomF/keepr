@@ -29,7 +29,13 @@ namespace keepr.Services
             Vault[] vault = _repo.GetMyVaults(userInfo);
             return vault;
         }
-
+internal List<VaultKeepz> GetVaultKeeps(int id, string uId)
+        {
+            Vault vault = this.GetVaultById(id, uId);
+            // if(vault) throw new Exception("Woah there bro, you arent on the list...");
+            List<VaultKeepz> vaultKeeps = _repo.GetVaultKeeps(id, uId);
+            return vaultKeeps;
+        }
 // NOTE issue with the isPrivate ??? solved
         internal Vault EditVault(Vault updateData)
         {

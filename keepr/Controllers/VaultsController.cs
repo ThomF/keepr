@@ -88,7 +88,7 @@ namespace keepr.Controllers
             try 
             {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            List<VaultKeepz> vaultKeep = _keepsService.GetVaultKeeps(id, userInfo?.Id);
+            List<VaultKeepz> vaultKeep = _vaultsService.GetVaultKeeps(id, userInfo?.Id);
             return Ok(vaultKeep);
             }
             catch (Exception e)
