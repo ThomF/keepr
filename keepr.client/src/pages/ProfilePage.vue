@@ -14,7 +14,7 @@
               <img class="pfp" :src="profile.picture" alt="">
               <h3>{{ profile.name }}</h3>
               <!-- NOTE add the keeps to appstate on load??? -->
-              <h4>Keeps 0 | Vaults 0</h4>
+              <h4>Keeps {{ keepsAct }} | Vaults {{ vaultsAct }}</h4>
             </section>
           </div>
         </div>
@@ -100,6 +100,8 @@ export default {
 
 
 
+
+
     onMounted(() => {
       getUser()
       getUserKeeps()
@@ -111,7 +113,9 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       keep: computed(() => AppState.keeps),
-      vault: computed(() => AppState.vaults)
+      vault: computed(() => AppState.vaults),
+      vaultsAct: computed(() => AppState.vaultsAct),
+      keepsAct: computed(() => AppState.keepsAct)
     }
   }
 }

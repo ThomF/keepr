@@ -13,6 +13,7 @@ class KeepsService {
     async getUserKeeps(user) {
         const res = await api.get(`api/profiles/${user}/keeps`)
         AppState.keeps = res.data.map(k => new Keep(k))
+        AppState.keepsAct = AppState.keeps.length
     }
 
     async setActiveKeep(keep, keepId) {
