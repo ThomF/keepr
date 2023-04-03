@@ -19,12 +19,18 @@ class VaultsService {
 
     async getUserVaults(user) {
         const res = await api.get(`api/profiles/${user}/vaults`)
-        logger.log(res.data)
+        // logger.log(res.data)
         AppState.vaults = res.data.map(v => new Vault(v))
+    }
+    async getVault(id) {
+        const res = await api.get(`api/vaults/${id}`)
+        AppState.vault = res.data
     }
     async getKeepsByVault(id) {
         const res = await api.get(`api/vaults/${id}/keeps`)
+        logger.log('[Getting keeps in this vault]', res.data)
         AppState.keeps = res.data.map(v => new Keep(v))
+        logger.log("AppstateKEEPS", AppState.keeps)
     }
 
 }

@@ -1,16 +1,18 @@
 <template>
     <div v-if="vault">
-        v
-        <!-- <h1>{{ vault.title }}</h1> -->
-        <div v-for="k in keeps">
-            <Vault :vault="v" />
-        </div>
+
+        <h1>{{ vault.name }}</h1>
+        <section class="masonry">
+            <div v-for="v in keep">
+                <Vault :vault="v" />
+            </div>
+        </section>
     </div>
 </template>
 
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 import { vaultsService } from '../services/VaultsService';
@@ -29,8 +31,21 @@ export default {
             }
         }
 
+        async function getVault() {
+            try {
+                const id = route.params.vaultId
+                await vaultsService.getVault(id)
+            } catch (error) {
+                Pop.error(error.message)
+            }
+        }
+
         onMounted(() => {
             getKeeps()
+            getVault()
+        })
+        onUnmounted(() => {
+            AppState.vault = []
         })
         return {
             vault: computed(() => AppState.vault),
@@ -42,4 +57,16 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+$gap: 1em;
+
+.masonry {
+    columns: 300px;
+    column-gap: $gap;
+
+    &>div {
+        margin-top: $gap;
+        display: inline-block;
+    }
+}
+</style>
