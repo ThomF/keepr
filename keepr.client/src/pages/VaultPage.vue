@@ -1,21 +1,44 @@
 <template>
     <div v-if="vault">
 
-        <h1>{{ vault.name }}</h1>
-        <div v-if="account.id == vault.creatorId">
-            <button @click="deleteVault(vault.id)" class="btn text-danger" title="delete this keep"><i
-                    class="mdi mdi-cancel"></i>Delete this Vault</button>
-        </div>
-        <section class="masonry">
-            <div v-for="v in keep">
-                <div v-if="account.id == vault.creatorId">
-                    <button @click="deleteVaultKeep(v.vaultKeepId)" class="btn btn-outline text-danger">
-                        <i class="mdi mdi-delete"></i>
-                    </button>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-2"></div>
+                <div class="col-8 pt-3">
+                    <div class="card elevation-5 banner">
+                        <img class="banner" :src="vault.img" alt="">
+                    </div>
+                    <div v-if="account.id == vault.creatorId">
+                        <button @click="deleteVault(vault.id)" class="btn text-danger" title="delete this keep"><i
+                                class="mdi mdi-cancel"></i>Delete this Vault</button>
+                    </div>
+                    <div>
+                        <button class="btn btnPast rounded-pill">
+                            <h5> Keeps {{ keepsAct }}</h5>
+                        </button>
+                    </div>
+                    <div class="vTitle text-light gfont">
+                        <h1>{{ vault.name }}</h1>
+                    </div>
+
                 </div>
-                <Keep :keep="v" />
+                <div class="col-2"></div>
             </div>
-        </section>
+        </div>
+        <div class="container">
+            <div class="row">
+                <section class="masonry">
+                    <div v-for="v in keep">
+                        <Keep :keep="v" />
+                        <div v-if="account.id == vault.creatorId">
+                            <button @click="deleteVaultKeep(v.vaultKeepId)" class="btn btn-outline text-danger">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 
 
@@ -60,6 +83,7 @@ export default {
                 await vaultsService.getVault(id)
             } catch (error) {
                 Pop.error(error.message)
+                router.push({ name: 'Home' })
             }
         }
 
@@ -74,13 +98,16 @@ export default {
             vault: computed(() => AppState.vault),
             keep: computed(() => AppState.vaultKeeps),
             account: computed(() => AppState.account),
+            coverImg: computed(() => `url("${AppState.vault?.img}")`),
+            keepsAct: computed(() => AppState.vaultKeep),
+
             async deleteVault(vaultId) {
                 try {
                     if (await Pop.confirm("exiling this Vault will send it off forever! Are you sure?")) {
                         await vaultsService.deleteVault(vaultId)
+                        router.push({ name: 'Home' })
                         Pop.success(`The ${this.vault.name} was deleted`)
                         // NOTE look into pushing after delete
-                        // router.push('account')
                     }
                 } catch (error) {
                     Pop.error(error.message)
@@ -92,6 +119,7 @@ export default {
 
                     if (await Pop.confirm('This cant be undone! Are you sure?')) {
                         await vaultsService.deleteVaultKeep(vkId)
+                        Pop.success(`Removed The Keep`)
                     }
                 } catch (error) {
                     Pop.error('problem deleting this vault keep', error.message)
@@ -114,5 +142,26 @@ $gap: 1em;
         margin-top: $gap;
         display: inline-block;
     }
+}
+
+.coverBanner {
+    background-image: v-bind(coverImg);
+    height: 20em;
+    object-fit: cover;
+}
+
+.btnPast {
+    background: rgba(192, 104, 53, 0.354);
+}
+
+.banner {
+    object-fit: cover;
+    height: 25em;
+}
+
+.vTitle {
+    transform: translateY(-180px);
+    text-shadow: 2px 3px 3px black;
+    font-family: Quando;
 }
 </style>

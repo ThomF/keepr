@@ -31,6 +31,7 @@ class VaultsService {
         const res = await api.get(`api/vaults/${id}/keeps`)
         AppState.vaultKeeps = res.data.map(v => new Keep(v))
         logger.log("AppState VAULT KEEPS", AppState.vaultKeeps)
+        AppState.vaultKeep = AppState.vaultKeeps.length
     }
 
     async createVaultKeep(body) {

@@ -118,6 +118,7 @@ export default {
                     const body = { keepId: keepId, vaultId: vaultId }
                     await vaultsService.createVaultKeep(body)
                     this.keep.kept++
+                    Pop.success(`Added ${this.keep.name} to vault`)
                 } catch (error) {
                     Pop.error('error adding keep to vault')
                     logger.log(error)
