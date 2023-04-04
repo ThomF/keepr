@@ -1,15 +1,15 @@
 <template>
     <div v-if="keep">
-        <div class="container">
+        <div class="container cnt">
             <div class="row">
-                <div class="col-6 card">
+                <div class="col-6 card nvb">
                     <div class="thisKeepImg">
                         <img :src="keep.img" class="imgF" alt="">
                     </div>
                 </div>
-                <div class="col-6 card">
+                <div class="col-6 card navv">
                     <div class="row">
-                        <div class="col-4"></div>
+                        <div class="col-3"></div>
                         <div class="col-4 d-flex">
                             <div class="d-flex ps-3 m-3">
                                 <i class="mdi mdi-eye"></i>
@@ -23,7 +23,7 @@
                         <div class="col-4"></div>
                     </div>
                     <div class="row">
-                        <div class="col-4"></div>
+                        <div class="col-3"></div>
                         <div class="col-8">
                             <h2>{{ keep.name }}</h2>
                         </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="row m-5 floatme">
                         <div class="d-flex justify-content-between">
-                            <div class="col-2">
+                            <div class="col-2 rmv">
                                 <div v-if="account.id == keep.creatorId">
                                     <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
                                             class="mdi mdi-cancel"></i>Remove</button>
@@ -138,7 +138,46 @@ export default {
     height: 80px;
 }
 
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.thisKeepImg {
+
+    transform: translateX(-20px);
+}
+
+
 // .floatme {
 //     transform: translateY(320px);
 // }
+
+@media screen and (max-width: 768px) {
+
+    .nvb,
+    .navv {
+        width: 100% !important;
+
+    }
+
+    .navv {
+        max-height: 350px;
+        overflow-y: auto;
+    }
+
+    .thisKeepImg {
+        order: -1 !important;
+        height: 40vh;
+        transform: translateX(-20px);
+        object-fit: cover;
+    }
+
+    .rmv {
+        margin-right: 20px;
+        transform: translateX(-20px);
+    }
+
+
+}
 </style>
