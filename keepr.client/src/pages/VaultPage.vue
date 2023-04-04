@@ -32,7 +32,7 @@
                         <div v-for="v in keep">
                             <Keep :keep="v" />
                             <div v-if="account.id == vault.creatorId">
-                                <button title="Delete this Keep" @click="deleteVaultKeep(v.vaultKeepId)"
+                                <button title="Remove this Keep" @click="deleteVaultKeep(v.vaultKeepId)"
                                     class="btn btn-danger text-light flt">
                                     <i class="mdi mdi-delete"></i>
                                 </button>

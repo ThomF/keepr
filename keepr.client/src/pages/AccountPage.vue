@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect, ref } from 'vue'
 import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService'
 import { profilesService } from '../services/ProfilesService'
@@ -75,25 +75,27 @@ export default {
 
   setup() {
     async function getMyVaults() {
-      try {
-        await accountService.getMyVaults()
-      } catch (error) {
-        Pop.error(error.message)
-      }
+      await accountService.getMyVaults()
     }
     async function getMyKeeps() {
+      let id = AppState.account.id
+      logger.log("ID", id)
+      await accountService.getMyKeeps(id)
+    }
+    async function getAccount() {
       try {
-        const id = AppState.account.id
-        logger.log("ID", id)
-        await accountService.getMyKeeps(id)
+        await accountService.getAccount()
       } catch (error) {
-        Pop.error(error.message)
+        logger.log(error.message)
       }
     }
-    onMounted(() => {
+    onMounted(async () => {
+      await getAccount()
       getMyVaults()
       getMyKeeps()
+
     })
+
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
@@ -126,7 +128,7 @@ img {
 }
 
 .banner {
-  object-fit: cover;
+  object-fit: fill;
   height: 15em;
   background-image: v-bind(coverImg);
 }

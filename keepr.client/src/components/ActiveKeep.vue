@@ -40,7 +40,7 @@
                             <div class="col-2 rmv">
                                 <div v-if="account.id == keep.creatorId">
                                     <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
-                                            class="mdi mdi-cancel"></i>Remove</button>
+                                            class="mdi mdi-cancel"></i>Delete!</button>
                                 </div>
                             </div>
                             <div class="col-6">

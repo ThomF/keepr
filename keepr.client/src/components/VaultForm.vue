@@ -25,7 +25,7 @@
                     aria-describedby="helpId" placeholder="">
 
             </div>
-            <button class="btn btn-outline-success" data-bs-dismiss="modal">Submit<i
+            <button class="btn btn-outline-success" data-bs-dismiss="modal" :disabled="!isFormComplete">Submit<i
                     class=" fs-2 mdi mdi-safe"></i></button>
         </form>
     </div>
@@ -33,11 +33,16 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService';
 
 export default {
+    computed: {
+        isFormComplete() {
+            return this.editable.name && this.editable.img && this.editable.description;
+        }
+    },
     setup() {
         const editable = ref({})
         return {

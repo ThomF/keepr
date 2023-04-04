@@ -17,19 +17,25 @@
                 <input type="text" class="form-control" v-model="editable.description" name="description" id=""
                     aria-describedby="helpId" placeholder="">
             </div>
-            <button class="btn btn-success" data-bs-dismiss="modal"><i class=" fs-2 mdi mdi-shape-square-plus"></i></button>
+            <button class="btn btn-success" data-bs-dismiss="modal" :disabled="!isFormComplete"><i
+                    class=" fs-2 mdi mdi-shape-square-plus"></i></button>
         </form>
     </div>
 </template>
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 
 export default {
+    computed: {
+        isFormComplete() {
+            return this.editable.name && this.editable.img && this.editable.description;
+        }
+    },
     setup() {
         const editable = ref({})
         return {
