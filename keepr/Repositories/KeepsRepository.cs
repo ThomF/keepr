@@ -32,13 +32,13 @@ namespace keepr.Repositories
             string sql = @"
             SELECT 
             ke.*,
-            
+            COUNT(vk.id) AS kept,
             act.*
             FROM keep ke
-            
+            LEFT JOIN vaultKeep vk ON vk.keepId = ke.id
             JOIN accounts act ON ke.creatorId = act.id
             WHERE ke.id = @id
-            
+            GROUP BY ke.id;
             ";
             Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof)=>
             {
@@ -51,10 +51,14 @@ namespace keepr.Repositories
         internal List<Keep> getKeeps()
         {
             string sql = @"
-            SELECT ke.*,
+            SELECT 
+            ke.*,
+            COUNT(vk.id) AS kept,
             act.*
             FROM keep ke
-            JOIN accounts act ON ke.creatorId = act.id;
+            LEFT JOIN vaultKeep vk ON vk.keepId = ke.id
+            JOIN accounts act ON ke.creatorId = act.id
+            GROUP BY ke.id;
             ";
             List<Keep> keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof)=>
             {
