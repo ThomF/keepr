@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 smdd">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo"
@@ -7,13 +7,13 @@
           height="45" />
       </div>
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <button class="navbar-toggler tglbtn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="d-flex navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li class="m-3">
+        <li class="m-3 hm">
           <router-link :to="{ name: 'Home' }" class="btn text-dark lighten-30 selectable text-uppercase">
             <b>Home</b>
           </router-link>
@@ -64,5 +64,37 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+
+  .tglbtn {
+    display: none;
+  }
+
+  .hm {
+    display: none;
+  }
+
+
+  .navbar-collapse.collapse.show {
+    height: 0;
+    visibility: hidden;
+    transition: none;
+  }
+
+  .navbar-brand,
+  .navbar-nav {
+    flex-direction: row !important;
+  }
+
+  .navbar-collapse {
+    flex-basis: auto !important;
+  }
+
+  .dropdown-menu {
+    position: static !important;
+  }
+
+
+
+}
 </style>
