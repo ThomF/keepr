@@ -5,12 +5,14 @@ namespace keepr.Controllers
     public class VaultKeepsController : ControllerBase
     {
         private readonly VaultKeepsService _vaultKeepsService;
+        private readonly VaultsService _vaultsService;
 
         private readonly Auth0Provider _auth;
 
-        public VaultKeepsController(VaultKeepsService vaultKeepsService, Auth0Provider auth)
+        public VaultKeepsController(VaultKeepsService vaultKeepsService,VaultsService vaultsService, Auth0Provider auth)
         {
             _vaultKeepsService = vaultKeepsService;
+            _vaultsService = vaultsService;
             _auth = auth;
         }
 
@@ -22,7 +24,7 @@ namespace keepr.Controllers
             {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             vaultKeepData.CreatorId = userInfo.Id;
-            VaultKeep vaultKeep = _vaultKeepsService.createVaultKeep(vaultKeepData);
+            VaultKeep vaultKeep = _vaultsService.createVaultKeep(vaultKeepData);
             return Ok(vaultKeep);
 
             }

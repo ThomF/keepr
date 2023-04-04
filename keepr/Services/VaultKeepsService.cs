@@ -9,14 +9,7 @@ namespace keepr.Services
             _repo = repo;
         }
 
-        internal VaultKeep createVaultKeep(VaultKeep vaultKeepData)
-        {
-            // if(vaultKeepData.CreatorId != userInfo.Id ) throw new Exception("Hey You cant vaultkeep that");
-            VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
-            
-            // if(vaultKeepData.Id != VaultKeep.creatorId) throw new Exception("Cant Authorize you!");
-            return vaultKeep;
-        }
+    
 
         internal string DeleteVaultKeep(int id, Account userInfo)
         {

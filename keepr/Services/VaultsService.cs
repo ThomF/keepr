@@ -29,6 +29,15 @@ namespace keepr.Services
             Vault[] vault = _repo.GetMyVaults(userInfo);
             return vault;
         }
+        internal VaultKeep createVaultKeep(VaultKeep vaultKeepData)
+        {
+            
+            Vault vault = this.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+            if(vault.CreatorId != vaultKeepData.CreatorId) throw new Exception("sterp");
+            VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
+            
+            return vaultKeep;
+        }
 internal List<VaultKeepz> GetVaultKeeps(int id, string uId)
         {
             Vault vault = this.GetVaultById(id, uId);
