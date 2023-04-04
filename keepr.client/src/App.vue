@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="sb">
     <Navbar />
   </header>
   <main>
@@ -36,5 +36,16 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .sb {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+
 }
 </style>

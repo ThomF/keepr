@@ -64,9 +64,5 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-@media screen and (min-width: 768px) {
-  nav {
-    height: 64px;
-  }
-}
+@media screen and (max-width: 768px) {}
 </style>

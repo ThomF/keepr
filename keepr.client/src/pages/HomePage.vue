@@ -68,6 +68,8 @@ export default {
 
 <style scoped lang="scss">
 $gap: 1em;
+$breakpoint-tablet: 768px;
+
 
 .masonry {
   columns: 300px;
@@ -95,6 +97,18 @@ $gap: 1em;
       width: 100%;
       object-fit: contain;
       object-position: center;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .masonry {
+    columns: 150px;
+    column-gap: .5em;
+
+    &>div {
+      margin-top: 1em;
+      display: inline-block;
     }
   }
 }
