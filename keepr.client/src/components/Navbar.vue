@@ -19,16 +19,18 @@
           </router-link>
         </li>
         <li class="m-3">
-          <div class="dropdown">
-            <button class="btn text-dark lighten-30 selectable text-uppercase" type="button" id="dropdownMenuButton"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <b>CREATE</b><i class="mdi mdi-menu-down"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a title="Create Keep" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#keepForm">Keep <i
-                  class="mdi mdi-human ms-3"></i></a>
-              <a title="Create Vault" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#vaultForm">Vault <i
-                  class="mdi mdi-safe-square ms-3"></i></a>
+          <div v-if="user.id">
+            <div class="dropdown">
+              <button class="btn text-dark lighten-30 selectable text-uppercase" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <b>CREATE</b><i class="mdi mdi-menu-down"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a title="Create Keep" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#keepForm">Keep <i
+                    class="mdi mdi-human ms-3"></i></a>
+                <a title="Create Vault" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#vaultForm">Vault <i
+                    class="mdi mdi-safe-square ms-3"></i></a>
+              </div>
             </div>
           </div>
         </li>
@@ -40,10 +42,15 @@
 </template>
 
 <script>
+import { computed, onMounted, onUnmounted } from 'vue';
 import Login from './Login.vue'
+import { AppState } from '../AppState';
+
 export default {
   setup() {
-    return {}
+    return {
+      user: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }

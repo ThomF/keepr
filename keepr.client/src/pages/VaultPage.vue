@@ -27,16 +27,19 @@
         </div>
         <div class="container">
             <div class="row">
-                <section class="masonry">
-                    <div v-for="v in keep">
-                        <Keep :keep="v" />
-                        <div v-if="account.id == vault.creatorId">
-                            <button @click="deleteVaultKeep(v.vaultKeepId)" class="btn btn-outline text-danger">
-                                <i class="mdi mdi-delete"></i>
-                            </button>
+                <div class="col-12">
+                    <section class="masonry">
+                        <div v-for="v in keep">
+                            <Keep :keep="v" />
+                            <div v-if="account.id == vault.creatorId">
+                                <button title="Delete this Keep" @click="deleteVaultKeep(v.vaultKeepId)"
+                                    class="btn btn-danger text-light flt">
+                                    <i class="mdi mdi-delete"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
@@ -133,6 +136,10 @@ export default {
 
 <style lang="scss" scoped>
 $gap: 1em;
+
+.flt {
+    transform: translateY(-80px);
+}
 
 .masonry {
     columns: 300px;
