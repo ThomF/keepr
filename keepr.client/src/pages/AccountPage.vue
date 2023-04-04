@@ -1,6 +1,6 @@
 <template>
   <div v-if="account">
-    <div class="container pt-md-3">
+    <div class="container pt-3">
       <div class="row">
         <div class="col-md-12">
           <div class="card banner text-center">
@@ -22,8 +22,8 @@
     <div class="container">
       <div class="row">
         <div class="col-5"></div>
-        <div class="col-4">
-          <h4>Keeps {{ keepsAct }} | Vaults {{ vaultsAct }}</h4>
+        <div class="col-4 ">
+          <h4 class="fsm">Keeps {{ keepsAct }} | Vaults {{ vaultsAct }}</h4>
         </div>
       </div>
     </div>
@@ -134,5 +134,12 @@ img {
 .vTitle {
   text-shadow: 2px 3px 3px black;
   font-family: Quando;
+}
+
+@media screen and (max-width: 768px) {
+  .fsm {
+    font-size: 20px;
+    transform: translateX(-20px);
+  }
 }
 </style>
