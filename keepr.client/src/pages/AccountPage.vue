@@ -11,7 +11,8 @@
                 <img class="rounded" :src="account.picture" alt="" />
               </div>
               <div class="pt-md-3">
-                <button class="btn btn-success mdi mdi-pen" data-bs-toggle="modal" data-bs-target="#editAccount"></button>
+                <button class="btn btn-success mdi mdi-pen" data-bs-toggle="modal" data-bs-target="#editAccount"
+                  title="edit account"></button>
               </div>
             </div>
           </div>

@@ -34,8 +34,8 @@ class AccountService {
   }
 
   async editAccount(edit) {
-    const res = await api.post('account', edit)
-    AppState.account.map(a => new Account(a))
+    const res = await api.put('account', edit)
+    AppState.account = res.data
   }
 
 }

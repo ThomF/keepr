@@ -29,7 +29,7 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-  [HttpPost]
+  [HttpPut]
   [Authorize]
   async public Task<ActionResult<Account>> editAccount([FromBody] Account accountData)
   {
