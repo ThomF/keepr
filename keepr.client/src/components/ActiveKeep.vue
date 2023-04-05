@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-4">
                                 <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
-                                    <img :src="keep.creator.picture" data-bs-dismiss="modal" :title="keep.creatorId.name"
+                                    <img :src="keep.creator.picture" data-bs-dismiss="modal" :title="keep.creator.name"
                                         class="pfp" alt="">
                                 </router-link>
                             </div>

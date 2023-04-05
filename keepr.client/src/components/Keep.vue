@@ -36,6 +36,7 @@ export default {
             keepImg: computed(() => `url("${props.keep.img}")`),
             async setActiveKeep() {
                 await keepsService.setActiveKeep(props.keep, props.keep.id)
+                props.keep.views++
 
             },
             async getMyVaults() {
