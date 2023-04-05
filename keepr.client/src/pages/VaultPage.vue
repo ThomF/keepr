@@ -58,7 +58,7 @@
 
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 import { router } from '../router';
@@ -90,9 +90,11 @@ export default {
             }
         }
 
-        onMounted(() => {
-            getKeeps()
-            getVault()
+        watchEffect(() => {
+            if (AppState.account.id != null) {
+                getKeeps()
+                getVault()
+            }
         })
         onUnmounted(() => {
             AppState.vault = {}
