@@ -77,6 +77,7 @@ export default {
 
   setup() {
     async function getMyVaults() {
+
       await accountService.getMyVaults()
     }
     async function getMyKeeps() {

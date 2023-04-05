@@ -90,11 +90,9 @@ export default {
             }
         }
 
-        watchEffect(() => {
-            if (AppState.account.id != null) {
-                getKeeps()
-                getVault()
-            }
+        onMounted(() => {
+            getKeeps()
+            getVault()
         })
         onUnmounted(() => {
             AppState.vault = {}

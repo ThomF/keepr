@@ -83,20 +83,12 @@ export default {
     }
 
     async function getUserKeeps() {
-      try {
-        const user = route.params.creatorId
-        await keepsService.getUserKeeps(user)
-      } catch (error) {
-        Pop.error(error.message)
-      }
+      const user = route.params.creatorId
+      await keepsService.getUserKeeps(user)
     }
     async function getUserVaults() {
-      try {
-        const user = route.params.creatorId
-        await vaultsService.getUserVaults(user)
-      } catch (error) {
-        Pop.error(error.message)
-      }
+      const user = route.params.creatorId
+      await vaultsService.getUserVaults(user)
     }
 
 

@@ -94,9 +94,9 @@ export default {
     font-family: Quando;
 }
 
-.floatImg {
-    // padding-left: 140px;
-}
+// .floatImg {
+//     padding-left: 140px;
+// }
 
 .title {
     text-shadow: 2px 2px 1px black;

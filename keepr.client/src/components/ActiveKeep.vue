@@ -9,11 +9,11 @@
                     <div class="row justify-content-center ovTt p-1 m-0">
                         <div class="col-3"></div>
                         <div class="col-4 d-flex">
-                            <div class="d-flex ps-3 m-3">
+                            <div title="views" class="d-flex ps-3 m-3">
                                 <i class="mdi mdi-eye"></i>
                                 <p>{{ keep.views }}</p>
                             </div>
-                            <div class="d-flex m-3">
+                            <div title="Kept" class="d-flex m-3">
                                 <i class="mdi mdi-pin"></i>
                                 <p>{{ keep.kept }}</p>
                             </div>
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div v-if="account.id">
-                                    <div class="dropdown p-0 m-0">
+                                    <div class="dropdown p-0 m-0" title="Select a Vault">
                                         <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
                                             id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
