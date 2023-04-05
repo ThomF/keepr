@@ -1,11 +1,11 @@
 <template>
     <div v-if="keep">
-        <div class="container-fluid p-0 m-0">
+        <div class="container-fluid p-0 m-0 navv">
             <div class="row m-0 p-0">
                 <div class="col-6 m-0 p-0 nvb">
                     <img :src="keep.img" class="imgF" alt="">
                 </div>
-                <div class="col-6 ">
+                <div class="col-md-6 ">
                     <div class="row justify-content-center ovTt p-1 m-0">
                         <div class="col-3"></div>
                         <div class="col-4 d-flex">
@@ -26,9 +26,9 @@
                                 <h2>{{ keep.name }}</h2>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8">
+                        <div class="row mobile-desc">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
                                 <b>{{ keep.description }}</b>
                             </div>
                         </div>
@@ -205,7 +205,7 @@ export default {
     }
 
     .navv {
-        max-height: 350px;
+        max-height: 600px;
         overflow-y: auto;
     }
 
@@ -216,10 +216,12 @@ export default {
         object-fit: cover;
     }
 
-    .rmv {
-        margin-right: 20px;
-        transform: translateX(-20px);
-    }
+    .mobile-desc {}
+
+    // .rmv {
+    //     margin-right: 20px;
+    //     transform: translateX(-20px);
+    // }
 
 
 }
