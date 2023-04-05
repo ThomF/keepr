@@ -41,17 +41,19 @@
                                             class="mdi mdi-cancel"></i>Delete!</button>
                                 </div>
 
-                                <div class="dropdown p-0 m-0">
-                                    <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <b>Select A Vault</b><i class="mdi mdi-menu-down"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <div v-for="v in vaults">
-                                            <a @click="addToVault(keep.id, v.id)" :vault="v" class="dropdown-item">{{
-                                                v.name
-                                            }}</a>
+                                <div v-if="account.id">
+                                    <div class="dropdown p-0 m-0">
+                                        <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <b>Select A Vault</b><i class="mdi mdi-menu-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div v-for="v in vaults">
+                                                <a @click="addToVault(keep.id, v.id)" :vault="v" class="dropdown-item">{{
+                                                    v.name
+                                                }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
