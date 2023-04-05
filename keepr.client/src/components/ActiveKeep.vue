@@ -43,7 +43,8 @@
 
                                 <div v-if="account.id">
                                     <div class="dropdown p-0 m-0" title="Select a Vault">
-                                        <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
+                                        <button @click="getMyVaults()"
+                                            class="btn text-dark lighten-30 selectable text-uppercase" type="button"
                                             id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             <b>Select A Vault</b><i class="mdi mdi-menu-down"></i>
@@ -131,6 +132,14 @@ export default {
                 } catch (error) {
                     Pop.error('error adding keep to vault')
                     logger.log(error)
+                }
+            },
+
+            async getMyVaults() {
+                try {
+                    await accountService.getAccount()
+                } catch (error) {
+                    logger.log(error.message)
                 }
             }
 

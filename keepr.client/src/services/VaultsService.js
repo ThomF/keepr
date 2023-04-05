@@ -20,8 +20,8 @@ class VaultsService {
     async getUserVaults(user) {
         const res = await api.get(`api/profiles/${user}/vaults`)
         // logger.log(res.data)
-        AppState.vaults = res.data.map(v => new Vault(v))
-        AppState.vaultsAct = AppState.vaults.length
+        AppState.actVaults = res.data.map(v => new Vault(v))
+        AppState.vaultsAct = AppState.actVaults.length
     }
     async getVault(id) {
         const res = await api.get(`api/vaults/${id}`)

@@ -106,7 +106,7 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       keep: computed(() => AppState.keeps),
-      vault: computed(() => AppState.vaults),
+      vault: computed(() => AppState.actVaults),
       vaultsAct: computed(() => AppState.vaultsAct),
       keepsAct: computed(() => AppState.keepsAct)
     }

@@ -16,6 +16,7 @@ export const AppState = reactive({
   vaultKeeps: null,
   /** @type {import('./models/Vault.js').Vault} */
   vaults: {},
+  actVaults: null,
   /** @type {import('./models/Vault.js').Vault | null} */
   vault: null,
 })
