@@ -1,14 +1,12 @@
 <template>
     <div v-if="keep">
-        <div class="container cnt ">
-            <div class="row">
-                <div class="col-6 card nvb">
-                    <div class="thisKeepImg">
-                        <img :src="keep.img" class="imgF" alt="">
-                    </div>
+        <div class="container-fluid p-0 m-0">
+            <div class="row m-0 p-0">
+                <div class="col-6 m-0 p-0 nvb">
+                    <img :src="keep.img" class="imgF" alt="">
                 </div>
-                <div class="col-6 card navv ovC ">
-                    <div class="row ovTt">
+                <div class="col-6 ">
+                    <div class="row justify-content-center ovTt p-1 m-0">
                         <div class="col-3"></div>
                         <div class="col-4 d-flex">
                             <div class="d-flex ps-3 m-3">
@@ -23,9 +21,8 @@
                         <div class="col-4"></div>
                     </div>
                     <div class="ovvT">
-                        <div class="row">
-                            <div class="col-3"></div>
-                            <div class="col-8">
+                        <div class="row text-center">
+                            <div class="col-md-12">
                                 <h2>{{ keep.name }}</h2>
                             </div>
                         </div>
@@ -36,17 +33,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-5 floatme ">
-                        <div class="d-flex justify-content-between ovBt">
-                            <div class="col-2 rmv">
-                                <div v-if="account.id == keep.creatorId">
+                    <div class="row floatme ">
+                        <div class="ovBt">
+                            <div class="col-md-12 rmv p-0 m-0 d-flex justify-content-evenly ">
+                                <div v-if="account.id == keep.creatorId" class="p-0 m-0">
                                     <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
                                             class="mdi mdi-cancel"></i>Delete!</button>
                                 </div>
-                            </div>
-                            <div class="col-6">
 
-                                <div class="dropdown">
+                                <div class="dropdown p-0 m-0">
                                     <button class="btn text-dark lighten-30 selectable text-uppercase" type="button"
                                         id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
@@ -54,13 +49,13 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <div v-for="v in vaults">
-                                            <a @click="addToVault(keep.id, v.id)" :vault="v" class="dropdown-item">{{ v.name
+                                            <a @click="addToVault(keep.id, v.id)" :vault="v" class="dropdown-item">{{
+                                                v.name
                                             }}</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-4">
+
                                 <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
                                     <img :src="keep.creator.picture" data-bs-dismiss="modal" :title="keep.creator.name"
                                         class="pfp" alt="">
@@ -139,6 +134,13 @@ export default {
     height: 80px;
 }
 
+.imgF {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
 .dropdown-menu {
     max-height: 200px;
     overflow-y: auto;
@@ -150,27 +152,26 @@ export default {
 }
 
 @media screen and (min-width: 769px) {
-    .ovBt {
-        position: absolute;
-        bottom: 50px;
-    }
+    // .ovBt {
+    //     position: static;
+    //     bottom: 50px;
+    // }
 
-    .ovTt {
-        position: absolute;
-        text-align: center;
-        top: 0;
-        padding-left: 120px;
-    }
+    // .ovTt {
+    //     height: 70%;
+    // }
 
     .ovvT {
-        position: absolute;
-        top: 60px;
-        // padding-left: 20px;
+        height: 65%;
     }
 
-    .ovC {
-        position: relative;
+    .ovRowName {
+        padding-left: 80px;
     }
+
+    // .ovC {
+    //     position: relative;
+    // }
 }
 
 
