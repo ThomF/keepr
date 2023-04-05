@@ -1,14 +1,14 @@
 <template>
     <div v-if="keep">
-        <div class="container cnt">
+        <div class="container cnt ">
             <div class="row">
                 <div class="col-6 card nvb">
                     <div class="thisKeepImg">
                         <img :src="keep.img" class="imgF" alt="">
                     </div>
                 </div>
-                <div class="col-6 card navv">
-                    <div class="row">
+                <div class="col-6 card navv ovC ">
+                    <div class="row ovTt">
                         <div class="col-3"></div>
                         <div class="col-4 d-flex">
                             <div class="d-flex ps-3 m-3">
@@ -22,21 +22,22 @@
                         </div>
                         <div class="col-4"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-8">
-                            <h2>{{ keep.name }}</h2>
+                    <div class="ovvT">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-8">
+                                <h2>{{ keep.name }}</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8">
+                                <b>{{ keep.description }}</b>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-8">
-                            <b>{{ keep.description }}</b>
-                        </div>
-
-                    </div>
-                    <div class="row m-5 floatme">
-                        <div class="d-flex justify-content-between">
+                    <div class="row m-5 floatme ">
+                        <div class="d-flex justify-content-between ovBt">
                             <div class="col-2 rmv">
                                 <div v-if="account.id == keep.creatorId">
                                     <button @click="deleteKeep(keep.id)" class="btn text-danger" title="delete this keep"><i
@@ -147,6 +148,32 @@ export default {
 
     transform: translateX(-20px);
 }
+
+@media screen and (min-width: 769px) {
+    .ovBt {
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .ovTt {
+        position: absolute;
+        text-align: center;
+        top: 0;
+        padding-left: 120px;
+    }
+
+    .ovvT {
+        position: absolute;
+        top: 60px;
+        // padding-left: 20px;
+    }
+
+    .ovC {
+        position: relative;
+    }
+}
+
+
 
 
 // .floatme {
