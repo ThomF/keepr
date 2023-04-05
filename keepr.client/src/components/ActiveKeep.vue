@@ -143,8 +143,10 @@ export default {
 
 <style lang="scss" scoped>
 .pfp {
-    border-radius: 50%;
+    width: 80px;
     height: 80px;
+    border-radius: 50%;
+    transform: translateY(-20px);
 }
 
 .imgF {
