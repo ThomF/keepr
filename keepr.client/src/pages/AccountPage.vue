@@ -3,7 +3,7 @@
     <div class="container pt-3">
       <div class="row">
         <div class="col-md-12">
-          <div class="card banner text-center">
+          <div class="banner text-center">
             <!-- <img :src="account.coverImg" alt=""> -->
             <div class="pt-md-3">
               <h1 class="vTitle text-light">Welcome {{ account.name }}</h1>
@@ -33,9 +33,11 @@
         <div>
           <h1>My Vaults</h1>
         </div>
-        <div class="masonry">
-          <div v-for="k in vault">
-            <Vault :vault="k" />
+        <div v-if="vault">
+          <div class="masonry">
+            <div v-for="k in vault">
+              <Vault :vault="k" />
+            </div>
           </div>
         </div>
         <div>
@@ -128,9 +130,9 @@ img {
 }
 
 .banner {
-  object-fit: fill;
   height: 15em;
   background-image: v-bind(coverImg);
+  background-size: cover;
 }
 
 .vTitle {
