@@ -74,9 +74,10 @@
 
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { AppState } from '../AppState';
 import { Vault } from '../models/Vault';
+import { accountService } from '../services/AccountService';
 import { keepsService } from '../services/KeepsService';
 import { vaultsService } from '../services/VaultsService';
 import { logger } from '../utils/Logger';
@@ -91,13 +92,23 @@ export default {
 
     setup() {
         const editable = ref({})
-
-
+        // async function getAccount() {
+        //     try {
+        //         await accountService.getAccount()
+        //         logger.log("getting account")
+        //     } catch (error) {
+        //         logger.log(error.message)
+        //     }
+        // }
+        // onMounted(async () => {
+        //     await getAccount()
+        // })
         return {
             editable,
             account: computed(() => AppState.account),
             keep: computed(() => AppState.keep),
             vaults: computed(() => AppState.vaults),
+
 
             async deleteKeep(keepId) {
                 try {
