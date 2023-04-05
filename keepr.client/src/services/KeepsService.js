@@ -20,7 +20,8 @@ class KeepsService {
         AppState.keep = keep
         const res = await api.get(`api/keeps/${keepId}`)
         logger.log('[Getting the active keep]', res.data)
-
+        AppState.keptC = res.data
+        // logger.log(AppState.keptC)
     }
 
 

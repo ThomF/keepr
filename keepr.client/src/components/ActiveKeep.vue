@@ -15,7 +15,7 @@
                             </div>
                             <div title="Kept" class="d-flex m-3">
                                 <i class="mdi mdi-pin"></i>
-                                <p>{{ keep.kept }}</p>
+                                <p>{{ kept?.kept }}</p>
                             </div>
                         </div>
                         <div class="col-4"></div>
@@ -109,6 +109,7 @@ export default {
             account: computed(() => AppState.account),
             keep: computed(() => AppState.keep),
             vaults: computed(() => AppState.vaults),
+            kept: computed(() => AppState.keptC),
 
 
             async deleteKeep(keepId) {
